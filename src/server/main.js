@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 const PORT = 8080;
-const index = path.join(path.dirname(fileURLToPath(import.meta.url)), "../", "index.html");
+const index = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../", "index.html");
 
 const app = express();
 
