@@ -5,8 +5,8 @@ import express from "express";
 import ViteExpress from "vite-express";
 import logger from "morgan";
 
-const PORT = 8080;
 const app = express();
+const PORT = 8080;
 
 app.use(logger("short"));
 
