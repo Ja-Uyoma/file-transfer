@@ -1,5 +1,6 @@
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import fs from "node:fs";
 
 import express from "express";
 import ViteExpress from "vite-express";
@@ -10,6 +11,10 @@ const app = express();
 const PORT = 8080;
 const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
 const uploadsDir = path.join(publicDir, "uploads");
+
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
 app.use(logger("short"));
 app.use(express.static(publicDir));
