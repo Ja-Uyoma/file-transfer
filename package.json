@@ -12,6 +12,8 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
-    "dropzone": "^6.0.0-beta.2"
+    "dropzone": "^6.0.0-beta.2",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
   }
 }
