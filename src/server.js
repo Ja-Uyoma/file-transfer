@@ -1,4 +1,5 @@
 import express from "express";
+import ViteExpress from "vite-express";
 import logger from "morgan";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -18,6 +19,6 @@ app.post("/", (request, response) => {
     return response.send("File uploaded");
 });
 
-app.listen(PORT, () => {
+ViteExpress.listen(app, PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
