@@ -6,14 +6,14 @@ import ViteExpress from "vite-express";
 import logger from "morgan";
 
 const PORT = 8080;
-const index = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../", "index.html");
-
 const app = express();
 
 app.use(logger("short"));
 
 app.get("/", (request, response) => {
-    response.sendFile(index);
+    response.sendFile("index.html", {
+        root: path.join(path.dirname(fileURLToPath(import.meta.url)), "../../")
+    });
 });
 
 app.post("/", (request, response) => {
