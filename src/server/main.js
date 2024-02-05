@@ -16,7 +16,7 @@ app.get("/", (request, response) => {
     });
 });
 
-app.post("/", (request, response) => {
+app.post("/upload", (request, response) => {
     return response.send("File uploaded");
 });
 
