@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     myDropzone.on("addedfile", (file) => {
-        console.log(file);
+        console.log(`${file.name} added to the queue...`);
     });
 
     myDropzone.on("sending", (file) => {
