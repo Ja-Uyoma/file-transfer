@@ -28,6 +28,12 @@ main {
   padding: 1em 1.5em 3em 1.5em;
 }
 
+main > p {
+  font-size: 1.065em;
+  font-weight: bold;
+  color: slategray;
+}
+
 .dropzone {
   border: 2px dashed #B2FFFF;
   color: blueviolet;
