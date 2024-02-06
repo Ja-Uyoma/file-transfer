@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     myDropzone.on("success", (file, response) => {
         console.log(`${response.message}`);
-    })
+    });
 
     myDropzone.on("error", (file, response) => {
         console.log("Could not upload file.\n\n");
         console.log(file);
         console.log(response);
-    })
+    });
 });
