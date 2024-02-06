@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
         url: "http://localhost:8080/upload",
         paramName: "file",
         maxFilesize: 2 * 1024,
-        addRemoveLinks: true
+        addRemoveLinks: true,
+        dictDefaultMessage: "Upload"
     });
     
     myDropzone.on("addedfile", (file) => {
