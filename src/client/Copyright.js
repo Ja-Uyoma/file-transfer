@@ -1,5 +1,5 @@
 export const HandleYearInCopyright = () => {
-    const year = document.querySelector("body > footer > span");
+    const year = document.querySelector("footer > p > span");
 
     const defaultYear = year.textContent;
     const currentYear = new Date().getFullYear();
