@@ -33,6 +33,13 @@ h1 {
   padding: 5em 5em;
 }
 
+button.dz-button {
+  background-color: #4B9CD3;
+  color: white;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+
 footer > p {
   text-align: center;
 }
