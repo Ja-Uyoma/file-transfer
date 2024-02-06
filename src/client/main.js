@@ -5,7 +5,8 @@ const myDropzone = new Dropzone("#my-dropzone", {
     paramName: "file",
     maxFilesize: 2 * 1024,
     addRemoveLinks: true,
-    dictDefaultMessage: "Upload"
+    dictDefaultMessage: "Upload",
+    createImageThumbnails: false
 });
 
 myDropzone.on("addedfile", (file) => {
