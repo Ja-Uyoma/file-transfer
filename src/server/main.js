@@ -10,7 +10,7 @@ import fileUpload from "express-fileupload";
 const app = express();
 const PORT = 8080;
 const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
-const uploadsDir = path.join(publicDir, "uploads");
+const uploadsDir = path.join(publicDir, "../uploads");
 
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
