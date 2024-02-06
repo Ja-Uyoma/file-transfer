@@ -15,17 +15,17 @@ body {
   background-color: lightgrey;
 }
 
+h1 {
+  font-size: 1em;
+  text-align: center;
+}
+
 main {
   max-width: 40rem;
   margin: 0 auto;
   background-color: white;
   border-radius: 1rem;
   padding: 1em 1.5em 3em 1.5em;
-}
-
-h1 {
-  font-size: 1em;
-  text-align: center;
 }
 
 .dropzone {
