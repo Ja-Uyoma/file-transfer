@@ -33,6 +33,12 @@ h1 {
   padding: 5em 5em;
 }
 
+.dropzone > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 button.dz-button {
   background-color: #4B9CD3;
   color: white;
