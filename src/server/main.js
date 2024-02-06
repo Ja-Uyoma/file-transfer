@@ -6,6 +6,7 @@ import express from "express";
 import ViteExpress from "vite-express";
 import logger from "morgan";
 import fileUpload from "express-fileupload";
+import cors from "cors";
 
 const app = express();
 const PORT = 8080;
@@ -16,6 +17,7 @@ if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
+app.use(cors());
 app.use(logger("short"));
 app.use(express.static(publicDir));
 
