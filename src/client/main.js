@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const myDropzone = new Dropzone("#my-dropzone", {
         url: "http://localhost:8080/upload",
         paramName: "file",
-        maxFilesize: 2 * 1024
+        maxFilesize: 2 * 1024,
+        addRemoveLinks: true
     });
     
     myDropzone.on("addedfile", (file, response) => {
