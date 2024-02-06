@@ -9,7 +9,7 @@ main {
 }
 
 .dropzone {
-  border: 4px dashed blueviolet;
+  border: 1px dashed #B2FFFF;
   color: blueviolet;
   margin: 2rem 0;
 }
