@@ -11,9 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
         addRemoveLinks: true
     });
     
-    myDropzone.on("addedfile", (file, response) => {
+    myDropzone.on("addedfile", (file) => {
         console.log(file);
-        console.log(response);
     });
 
     myDropzone.on("sending", (file) => {
