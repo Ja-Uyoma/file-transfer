@@ -51,6 +51,7 @@ button.dz-button {
   color: white;
   border-radius: 0.5em;
   padding: 0.5em 0.875em;
+  border-width: 0px;
 }
 
 footer > p {
