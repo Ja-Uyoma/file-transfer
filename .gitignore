@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Uploaded files
-public/uploads/*
+uploads
