@@ -12,6 +12,7 @@ main {
   border: 1px dashed #B2FFFF;
   color: blueviolet;
   margin: 2rem 0;
+  border-radius: 1rem;
 }
 
 h1 {
