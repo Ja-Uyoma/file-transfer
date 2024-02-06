@@ -1,3 +1,14 @@
+:root {
+  box-sizing: border-box;
+  font-size: 0.875em;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: helvetica, arial, sans-serif;
   padding: 6rem;
