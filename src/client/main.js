@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(response);
     });
 
+    myDropzone.on("sending", (file) => {
+        console.log(`Sending file ${file.name}...`);
+    });
+
     myDropzone.on("error", (file, response) => {
         console.log("Could not upload file.\n\n");
         console.log(file);
