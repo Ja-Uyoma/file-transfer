@@ -102,6 +102,10 @@ div.dz-details > * {
   flex: 1;
 }
 
+a.dz-remove {
+  text-align: end;
+}
+
 footer > p {
   text-align: center;
 }
