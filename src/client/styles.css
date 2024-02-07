@@ -64,6 +64,17 @@ button.dz-button {
 
 div.dz-preview.dz-file-preview {
   display: flex;
+  border: 1px solid black;
+  border-radius: 1.25em;
+  margin: 0.5em auto;
+}
+
+div.dz-preview.dz-file-preview.dz-success {
+  border-color: green;
+}
+
+div.dz-preview.dz-file-preview.dz-error {
+  border-color: red;
 }
 
 div.dz-details {
