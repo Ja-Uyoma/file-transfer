@@ -69,6 +69,10 @@ div.dz-preview.dz-file-preview {
   margin: 0.5em auto;
 }
 
+div.dz-preview.dz-file-preview > * + * {
+  width: 100%;
+}
+
 div.dz-preview.dz-file-preview.dz-success {
   border-color: green;
 }
@@ -79,7 +83,6 @@ div.dz-preview.dz-file-preview.dz-error {
 
 div.dz-details {
   display: flex;
-
 }
 
 footer > p {
