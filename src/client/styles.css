@@ -98,6 +98,10 @@ div.dz-details {
   display: flex;
 }
 
+div.dz-details > * {
+  flex: 1;
+}
+
 footer > p {
   text-align: center;
 }
