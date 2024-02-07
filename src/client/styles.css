@@ -67,6 +67,7 @@ div.dz-preview.dz-file-preview {
   border: 1px solid black;
   border-radius: 1.25em;
   margin: 0.5em auto;
+  padding: 1em 1em;
 }
 
 div.dz-preview.dz-file-preview > * + * {
