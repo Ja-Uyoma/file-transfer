@@ -62,6 +62,15 @@ button.dz-button {
   border-width: 0px;
 }
 
+div.dz-preview.dz-file-preview {
+  display: flex;
+}
+
+div.dz-details {
+  display: flex;
+
+}
+
 footer > p {
   text-align: center;
 }
