@@ -35,7 +35,7 @@ main > p {
 }
 
 .dropzone {
-  border: 2px dashed #B2FFFF;
+  border: 2px dashed lightgrey;
   color: blueviolet;
   border-radius: 1rem;
   background-color: #F0F8FF;
@@ -60,6 +60,42 @@ button.dz-button {
   border-radius: 0.5em;
   padding: 0.5em 0.875em;
   border-width: 0px;
+}
+
+div.dz-preview.dz-file-preview {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 1.25em;
+  margin: 0.5em auto;
+  padding: 1em 1em;
+}
+
+div.dz-preview.dz-file-preview > * + * {
+  width: 100%;
+}
+
+div.dz-preview.dz-file-preview > * {
+  flex: 1;
+}
+
+div.dz-image,
+div.dz-progress,
+div.dz-error-message, 
+div.dz-success-mark,
+div.dz-error-mark {
+  display: none;
+}
+
+div.dz-preview.dz-file-preview.dz-success {
+  border-color: green;
+}
+
+div.dz-preview.dz-file-preview.dz-error {
+  border-color: red;
+}
+
+div.dz-details {
+  display: flex;
 }
 
 footer > p {
