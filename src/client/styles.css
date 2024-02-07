@@ -35,7 +35,7 @@ main > p {
 }
 
 .dropzone {
-  border: 2px dashed #B2FFFF;
+  border: 2px dashed lightgrey;
   color: blueviolet;
   border-radius: 1rem;
   background-color: #F0F8FF;
