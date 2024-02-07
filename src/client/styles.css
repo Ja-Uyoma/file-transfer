@@ -77,6 +77,14 @@ div.dz-preview.dz-file-preview > * {
   flex: 1;
 }
 
+div.dz-image,
+div.dz-progress,
+div.dz-error-message, 
+div.dz-success-mark,
+div.dz-error-mark {
+  display: none;
+}
+
 div.dz-preview.dz-file-preview.dz-success {
   border-color: green;
 }
