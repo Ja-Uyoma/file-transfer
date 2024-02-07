@@ -74,10 +74,6 @@ div.dz-preview.dz-file-preview > * + * {
   width: 100%;
 }
 
-div.dz-preview.dz-file-preview > * {
-  flex: 1;
-}
-
 div.dz-image,
 div.dz-progress,
 div.dz-error-message, 
@@ -95,6 +91,7 @@ div.dz-preview.dz-file-preview.dz-error {
 }
 
 div.dz-details {
+  flex: 3;
   display: flex;
 }
 
@@ -104,6 +101,8 @@ div.dz-details > * {
 
 a.dz-remove {
   text-align: end;
+  display: block;
+  flex: 1;
 }
 
 footer > p {
