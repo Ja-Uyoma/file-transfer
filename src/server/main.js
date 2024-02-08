@@ -20,6 +20,7 @@ if (!fs.existsSync(uploadsDir)) {
 app.use(cors());
 app.use(logger("short"));
 app.use(express.static(publicDir));
+app.use(express.json());
 
 app.use(fileUpload());
 
@@ -39,6 +40,26 @@ app.post("/upload", (request, response) => {
         }
 
         response.json({ success: true, message: "File uploaded successfully!" });
+    });
+});
+
+app.delete("/delete-file", (req, res) => {
+    const filename = req.body.filename;
+
+    if (!filename) {
+        return res.status(400).send("Filename not provided");
+    }
+
+    // Delete the file from the server
+    fs.unlink(path.join(uploadsDir, "/", filename), (err) => {
+        if (err) {
+            console.error("Error deleting file: ", err);
+            res.status(500).send("Error deleting file");
+        }
+        else {
+            console.log("File deleted successfully");
+            res.send("File deleted successfully");
+        }
     });
 });
 
