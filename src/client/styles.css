@@ -62,6 +62,10 @@ button.dz-button {
   border-width: 0px;
 }
 
+button.dz-button:hover {
+  cursor: pointer;
+}
+
 div.dz-preview.dz-file-preview {
   display: flex;
   border: 1px solid black;
