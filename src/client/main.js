@@ -28,3 +28,27 @@ myDropzone.on("error", (file, response) => {
     console.log(file);
     console.log(response);
 });
+
+myDropzone.on("removedfile", function (file) {
+    if (file) {
+        // Send a request to the server to delete the file
+        fetch("/delete-file", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ filename: file.name })   // send the file name to the server
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("File deleted successfully");
+            }
+            else {
+                throw new Error("Error deleting file");
+            }
+        })
+        .catch(error => {
+            console.error("Error deleting file: ", error.message);
+        });
+    }
+});
