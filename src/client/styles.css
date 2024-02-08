@@ -62,6 +62,10 @@ button.dz-button {
   border-width: 0px;
 }
 
+button.dz-button:hover {
+  cursor: pointer;
+}
+
 div.dz-preview.dz-file-preview {
   display: flex;
   border: 1px solid black;
@@ -72,10 +76,6 @@ div.dz-preview.dz-file-preview {
 
 div.dz-preview.dz-file-preview > * + * {
   width: 100%;
-}
-
-div.dz-preview.dz-file-preview > * {
-  flex: 1;
 }
 
 div.dz-image,
@@ -95,7 +95,18 @@ div.dz-preview.dz-file-preview.dz-error {
 }
 
 div.dz-details {
+  flex: 3;
   display: flex;
+}
+
+div.dz-details > * {
+  flex: 1;
+}
+
+a.dz-remove {
+  text-align: end;
+  display: block;
+  flex: 1;
 }
 
 footer > p {
