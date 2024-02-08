@@ -88,10 +88,12 @@ div.dz-error-mark {
 
 div.dz-preview.dz-file-preview.dz-success {
   border-color: green;
+  border-width: 2px;
 }
 
 div.dz-preview.dz-file-preview.dz-error {
   border-color: red;
+  border-width: 2px;
 }
 
 div.dz-details {
