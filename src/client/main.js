@@ -5,6 +5,7 @@ const myDropzone = new Dropzone("#my-dropzone", {
     paramName: "file",
     maxFilesize: 2 * 1024,
     addRemoveLinks: true,
+    dictRemoveFileConfirmation: "Confirm file removal",
     dictDefaultMessage: "Upload",
     createImageThumbnails: false,
     previewsContainer: "section.uploaded-output"
