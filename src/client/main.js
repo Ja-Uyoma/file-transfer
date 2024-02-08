@@ -22,10 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     myDropzone.on("success", (file, response) => {
         console.log(`${response.message}`);
-
-        const uploadedFiles = getFilesFromLocalStorage();
-        uploadedFiles.push({ name: file.name, size: file.size, type: file.type });
-        saveFilesToLocalStorage(uploadedFiles);
     });
     
     myDropzone.on("error", (file, response) => {
@@ -58,23 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Function to save uploaded files to localStorage
-    const saveFilesToLocalStorage = files => {
-        localStorage.setItem("uploadedFiles", JSON.stringify(files));
-    };
-
-    // Function to retrieve uploaded files from localStorage
-    const getFilesFromLocalStorage = () => {
-        const filesJSON = localStorage.getItem("uploadedFiles");
-        return filesJSON ? JSON.parse(filesJSON) : [];
-    };
-    
-    // Function to update Dropzone previews with files from localStorage
-    const updatePreview = () => {
-        const uploadedFiles = getFilesFromLocalStorage();
-
+    const updatePreview = (existingFiles) => {
         // Add each file in uploadedFiles as a preview
-        uploadedFiles.forEach(file => {
+        existingFiles.forEach(file => {
             // Create a mock file object for Dropzone
             const mockFile = {
                 name: file.name,
@@ -82,13 +64,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 type: file.type
             };
 
-            // Add the mock file to Dropzone's file previews
-            myDropzone.files.push(mockFile);
             myDropzone.emit("addedfile", mockFile);
-            myDropzone.createThumbnailFromUrl(mockFile, file.url);
             myDropzone.emit("complete", mockFile);  // signal Dropzone that the file upload is complete
         });
     };
 
-    updatePreview();
+    fetch("/get-existing-files")
+        .then(response => response.json())
+        .then(existingFiles => {
+            updatePreview(existingFiles);
+        })
+        .catch(err => {
+            console.error("Error fetching existing files:", err);
+        });
 });
