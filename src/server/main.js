@@ -9,7 +9,7 @@ import fileUpload from "express-fileupload";
 import cors from "cors";
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
 const uploadsDir = path.join(publicDir, "../uploads");
 
