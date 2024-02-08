@@ -1,0 +1,114 @@
+:root {
+  box-sizing: border-box;
+  font-size: 0.875em;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  padding: 6rem;
+  background-color: lightgrey;
+}
+
+h1 {
+  font-size: 1em;
+  text-align: center;
+}
+
+main {
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1em 1.5em 3em 1.5em;
+}
+
+main > p {
+  font-size: 1.065em;
+  font-weight: bold;
+  color: slategray;
+}
+
+.dropzone {
+  border: 2px dashed lightgrey;
+  color: blueviolet;
+  border-radius: 1rem;
+  background-color: #F0F8FF;
+  padding: 5em 5em;
+}
+
+.dropzone > p {
+  text-align: center;
+  color: grey;
+  font-size: 1rem;
+}
+
+.dropzone > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.dz-button {
+  background-color: #4B9CD3;
+  color: white;
+  border-radius: 0.5em;
+  padding: 0.5em 0.875em;
+  border-width: 0px;
+}
+
+button.dz-button:hover {
+  cursor: pointer;
+}
+
+div.dz-preview.dz-file-preview {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 1.25em;
+  margin: 0.5em auto;
+  padding: 1em 1em;
+}
+
+div.dz-preview.dz-file-preview > * + * {
+  width: 100%;
+}
+
+div.dz-image,
+div.dz-progress,
+div.dz-error-message, 
+div.dz-success-mark,
+div.dz-error-mark {
+  display: none;
+}
+
+div.dz-preview.dz-file-preview.dz-success {
+  border-color: green;
+}
+
+div.dz-preview.dz-file-preview.dz-error {
+  border-color: red;
+}
+
+div.dz-details {
+  flex: 3;
+  display: flex;
+}
+
+div.dz-details > * {
+  flex: 1;
+}
+
+a.dz-remove {
+  text-align: end;
+  display: block;
+  flex: 1;
+}
+
+footer > p {
+  text-align: center;
+}

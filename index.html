@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./src/client/styles.css">
+    <script type="module" src="./src/client/main.js" defer></script>
+    <title>Upload Your Files</title>
+</head>
+
+<body>
+    <header>
+        <h1>Upload Your Files</h1>
+    </header>
+
+    <main>
+        <p>Upload</p>
+        
+        <form action="/upload" method="post" class="dropzone" id="my-dropzone" enctype="multipart/form-data">
+            <p>Drag data here or</p>
+            <div class="fallback">
+                <input type="file" name="file" id="file-fallback" multiple>
+            </div>
+        </form>
+
+        <section class="uploaded-output dropzone-previews">
+            <h3>Uploaded files</h3>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &copy; <span>2024</span> by OS Labs Limited</p>
+    </footer>
+</body>
+
+</html>
