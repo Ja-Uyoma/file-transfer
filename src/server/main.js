@@ -63,6 +63,24 @@ app.delete("/delete-file", (req, res) => {
     });
 });
 
+app.get("/get-existing-files", (req, res) => {
+    try {
+        const files = fs.readdirSync(uploadsDir);
+        const existingFiles = files.map(file => ({
+            name: file,
+            size: fs.statSync(path.join(uploadsDir, file)).size,
+            url: `/uploads/${file}`,
+            type: path.extname(file)
+        }));
+
+        res.json(existingFiles);
+    }
+    catch (error) {
+        console.error("Error retrieving existing files:", error);
+        res.status(500).send("Internal server error");
+    }
+});
+
 ViteExpress.listen(app, PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
