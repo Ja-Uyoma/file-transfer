@@ -11,6 +11,7 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 8080;
 const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
+const distDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../dist");
 const uploadsDir = path.join(publicDir, "../uploads");
 
 if (!fs.existsSync(uploadsDir)) {
@@ -19,7 +20,7 @@ if (!fs.existsSync(uploadsDir)) {
 
 app.use(cors());
 app.use(logger("short"));
-app.use(express.static(publicDir));
+app.use(express.static(distDir));
 app.use(express.json());
 
 app.use(fileUpload());
