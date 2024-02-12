@@ -19,7 +19,7 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 app.use(cors());
-app.use(logger("short"));
+app.use(logger("dev"));
 app.use(express.static(distDir));
 app.use(express.json());
 
