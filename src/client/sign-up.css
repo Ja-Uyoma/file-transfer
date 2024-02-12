@@ -23,6 +23,7 @@ main > form {
 
 main > form > label > input {
     display: block;
+    border-radius: 0.25rem;
 }
 
 main > form > button {
