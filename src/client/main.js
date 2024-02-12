@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const myDropzone = new Dropzone("#my-dropzone", {
         url: "/upload",
         paramName: "file",
-        maxFilesize: 2 * 1024,
+        maxFilesize: 5 * 1024,
         addRemoveLinks: true,
         dictRemoveFileConfirmation: "Confirm file removal",
         dictDefaultMessage: "Upload",
