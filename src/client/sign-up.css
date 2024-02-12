@@ -21,6 +21,10 @@ main > form {
     gap: 0.5rem;
 }
 
+main > form > label > input {
+    display: block;
+}
+
 main > form > button {
     background-color: #007FFF;
     border-radius: 0.625rem;
