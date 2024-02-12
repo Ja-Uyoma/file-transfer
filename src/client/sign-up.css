@@ -11,6 +11,11 @@
 
 body {
     font-family: helvetica, arial, sans-serif;
+    background-color: lightgrey;
+}
+
+main {
+    background-color: white;
 }
 
 main > form {
