@@ -21,6 +21,16 @@ main > form {
     gap: 0.5rem;
 }
 
+main > form > button {
+    background-color: #007FFF;
+    border-radius: 0.625rem;
+    color: white;
+}
+
+main > form > button:hover {
+    cursor: pointer;
+}
+
 footer {
     text-align: center;
 }
