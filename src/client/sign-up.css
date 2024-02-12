@@ -35,6 +35,14 @@ main > form > label > input {
     border-radius: 0.25rem;
 }
 
+main > form > label > input:valid {
+    border-color: green;
+}
+
+main > form > label > input:invalid {
+    border-color: red;
+}
+
 main > form > button {
     background-color: #007FFF;
     border-radius: 0.625rem;
