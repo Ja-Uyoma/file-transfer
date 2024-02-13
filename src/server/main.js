@@ -73,6 +73,20 @@ passport.use(new LocalStrategy(async (email, password, done) => {
     }
 }));
 
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findByPk(id);
+        done(null, user);
+    }
+    catch (err) {
+        done(err);
+    }
+});
+
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.static(distDir));
