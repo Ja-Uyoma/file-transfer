@@ -13,7 +13,10 @@ import passport from "passport";
 import LocalStrategy from "passport-local";
 import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = new Sequelize("sqlite:memory:");
+const sequelize = new Sequelize({
+    dialect: "sqlite",
+    storage: "database.sqlite"
+});
 
 try {
     await sequelize.authenticate();
