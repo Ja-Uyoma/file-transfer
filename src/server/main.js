@@ -8,11 +8,23 @@ import logger from "morgan";
 import fileUpload from "express-fileupload";
 import cors from "cors";
 
+import Sequelize from "sequelize";
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
 const distDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../dist");
 const uploadsDir = path.join(publicDir, "../uploads");
+
+const sequelize = new Sequelize("sqlite:memory");
+
+try {
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully!");
+}
+catch (err) {
+    console.error("Unable to connect to the database:", err);
+}
 
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
