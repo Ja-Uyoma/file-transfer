@@ -27,4 +27,4 @@ dist-ssr
 uploads
 
 # sqlite db
-memory
+database.sqlite
