@@ -69,6 +69,24 @@ app.get("/sign-up", (request, response) => {
     response.sendFile(path.join(publicDir, "../src/client/sign-up.html"));
 });
 
+app.post("/sign-up", async (request, response, next) => {
+    const { email, password } = request.body;
+
+    try {
+        if (!email || !password) {
+            return response.status(400).send("Email and password are required");
+        }
+
+        const user = await User.create({email, password});
+        await user.save();
+        response.redirect("/");
+    }
+    catch (err) {
+        console.error("Error registering user: ", err);
+        return next(err);
+    }
+});
+
 app.post("/upload", (request, response) => {
     if (!request.files || Object.keys(request.files).length === 0) {
         return response.status(400).send("No files were uploaded");
