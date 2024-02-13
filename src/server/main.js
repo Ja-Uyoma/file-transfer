@@ -9,6 +9,7 @@ import fileUpload from "express-fileupload";
 import cors from "cors";
 
 import Sequelize from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -25,6 +26,24 @@ try {
 catch (err) {
     console.error("Unable to connect to the database:", err);
 }
+
+const User = sequelize.define("User", {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+    username: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+});
+
+console.log(User === sequelize.models.User);
 
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
