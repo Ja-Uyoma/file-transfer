@@ -39,6 +39,8 @@ const User = sequelize.define("User", {
     }
 });
 
+await User.sync();
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
