@@ -8,6 +8,9 @@ import logger from "morgan";
 import fileUpload from "express-fileupload";
 import cors from "cors";
 
+import session from "express-session";
+import passport from "passport";
+import LocalStrategy from "passport-local";
 import { Sequelize, DataTypes } from "sequelize";
 
 const sequelize = new Sequelize("sqlite:memory:");
@@ -50,8 +53,11 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(express.static(distDir));
 app.use(express.json());
-
 app.use(fileUpload());
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (request, response) => {
     response.sendFile(path.join(publicDir, "../index.html"));
