@@ -54,6 +54,25 @@ if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
+passport.use(new LocalStrategy(async (email, password, done) => {
+    try {
+        const user = await User.findOne({ email: email });
+
+        if (!user) {
+            return done(null, false, { message: "Incorrect username" });
+        }
+
+        if (user.password !== password) {
+            return done(null, false, { message: "Incorrect password" });
+        }
+
+        return done(null, user);
+    }
+    catch (err) {
+        return done(err);
+    }
+}));
+
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.static(distDir));
