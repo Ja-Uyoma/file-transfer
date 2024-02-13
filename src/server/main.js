@@ -101,6 +101,15 @@ app.get("/", (request, response) => {
     response.sendFile(path.join(publicDir, "../index.html"));
 });
 
+app.get("/login", (request, response) => {
+    response.sendFile(path.join(publicDir, "../src/client/login.html"));
+})
+
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/"
+}));
+
 app.get("/sign-up", (request, response) => {
     response.sendFile(path.join(publicDir, "../src/client/sign-up.html"));
 });
