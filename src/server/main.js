@@ -63,6 +63,10 @@ app.get("/", (request, response) => {
     response.sendFile(path.join(publicDir, "../index.html"));
 });
 
+app.get("/sign-up", (request, response) => {
+    response.sendFile(path.join(publicDir, "../src/client/sign-up.html"));
+});
+
 app.post("/upload", (request, response) => {
     if (!request.files || Object.keys(request.files).length === 0) {
         return response.status(400).send("No files were uploaded");
