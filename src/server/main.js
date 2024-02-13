@@ -10,12 +10,6 @@ import cors from "cors";
 
 import { Sequelize, DataTypes } from "sequelize";
 
-const app = express();
-const PORT = process.env.PORT || 8080;
-const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
-const distDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../dist");
-const uploadsDir = path.join(publicDir, "../uploads");
-
 const sequelize = new Sequelize("sqlite:memory:");
 
 try {
@@ -43,6 +37,12 @@ const User = sequelize.define("User", {
 });
 
 console.log(User === sequelize.models.User);
+
+const app = express();
+const PORT = process.env.PORT || 8080;
+const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
+const distDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../dist");
+const uploadsDir = path.join(publicDir, "../uploads");
 
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
