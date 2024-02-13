@@ -1,0 +1,58 @@
+:root {
+    box-sizing: border-box;
+    font-size: 0.875em;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: helvetica, arial, sans-serif;
+    background-color: lightgrey;
+}
+
+main {
+    background-color: white;
+}
+
+main > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+main > form > p {
+    font-size: 1.25rem;
+}
+
+main > form > label > input {
+    display: block;
+    border-radius: 0.25rem;
+}
+
+main > form > label > input:valid {
+    border-color: green;
+}
+
+main > form > label > input:invalid {
+    border-color: red;
+}
+
+main > form > button {
+    background-color: #007FFF;
+    border-radius: 0.625rem;
+    color: white;
+}
+
+main > form > button:hover {
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+}
