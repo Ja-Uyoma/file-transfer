@@ -101,7 +101,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (request, response) => {
-    response.sendFile(path.join(publicDir, "../src/client/login.html"));
+    response.sendFile(path.join(publicDir, "../index.html"));
 });
 
 app.post("/login", passport.authenticate("local", {
@@ -110,7 +110,7 @@ app.post("/login", passport.authenticate("local", {
 }));
 
 app.get("/dropzone", (req, res) => {
-    res.sendFile(path.join(publicDir, "../index.html"));
+    res.sendFile(path.join(publicDir, "../src/client/login.html"));
 })
 
 app.get("/sign-up", (request, response) => {
