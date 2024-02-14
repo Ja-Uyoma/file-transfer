@@ -47,9 +47,8 @@ await User.sync();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const publicDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../public");
-const distDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../dist");
-const uploadsDir = path.join(publicDir, "../uploads");
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
+const uploadsDir = path.join(root, "/uploads");
 
 if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
@@ -92,7 +91,7 @@ passport.deserializeUser(async (id, done) => {
 
 app.use(cors());
 app.use(logger("dev"));
-app.use(express.static(distDir));
+app.use(express.static(path.join(root, "dist")));
 app.use(express.json());
 app.use(fileUpload());
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
@@ -101,7 +100,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (request, response) => {
-    response.sendFile(path.join(publicDir, "../src/client/login.html"));
+    response.sendFile(path.join(root, "index.html"));
 });
 
 app.post("/login", passport.authenticate("local", {
@@ -110,11 +109,11 @@ app.post("/login", passport.authenticate("local", {
 }));
 
 app.get("/dropzone", (req, res) => {
-    res.sendFile(path.join(publicDir, "../index.html"));
+    res.sendFile(path.join(root, "/src/client/dropzone.html"));
 })
 
 app.get("/sign-up", (request, response) => {
-    response.sendFile(path.join(publicDir, "../src/client/sign-up.html"));
+    response.sendFile(path.join(root, "/src/client/sign-up.html"));
 });
 
 app.post("/sign-up", async (request, response, next) => {
