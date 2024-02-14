@@ -105,7 +105,7 @@ app.get("/", (request, response) => {
 
 app.post("/login", passport.authenticate("local", {
     successRedirect: "/dropzone",
-    failureRedirect: "/sign-up"
+    failureRedirect: "/"
 }));
 
 app.get("/dropzone", (req, res) => {
