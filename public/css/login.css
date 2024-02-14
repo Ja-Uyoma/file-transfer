@@ -110,6 +110,7 @@ form .field button {
   cursor: pointer;
   background: linear-gradient(-135deg, #c850c0, #4158d0);
   transition: all 0.3s ease;
+  border-radius: 0.125rem;
 }
 form .field button:hover{
   transform: scale(0.95);
