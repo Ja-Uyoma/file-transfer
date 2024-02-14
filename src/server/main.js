@@ -55,9 +55,9 @@ if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-passport.use(new LocalStrategy(async (email, password, done) => {
+passport.use(new LocalStrategy({ usernameField: "email" },  async (email, password, done) => {
     try {
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ where: { email: email } });
 
         if (!user) {
             return done(null, false, { message: "Incorrect username" });
