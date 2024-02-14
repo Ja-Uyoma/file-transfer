@@ -7,7 +7,7 @@ export default defineConfig({
             input: {
                 main: resolve(__dirname, "index.html"),
                 signup: resolve(__dirname, "src/client/sign-up.html"),
-                login: resolve(__dirname, "src/client/login.html")
+                dropzone: resolve(__dirname, "src/client/dropzone.html")
             }
         }
     }

@@ -110,7 +110,7 @@ app.post("/login", passport.authenticate("local", {
 }));
 
 app.get("/dropzone", (req, res) => {
-    res.sendFile(path.join(publicDir, "../src/client/login.html"));
+    res.sendFile(path.join(publicDir, "../src/client/dropzone.html"));
 })
 
 app.get("/sign-up", (request, response) => {
