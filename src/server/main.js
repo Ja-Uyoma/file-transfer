@@ -46,7 +46,6 @@ const User = sequelize.define("User", {
 await User.sync();
 
 const app = express();
-const PORT = process.env.PORT || 8080;
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
 const uploadsDir = path.join(root, "/uploads");
 
@@ -201,6 +200,8 @@ app.get("/get-existing-files", ensureUserIsAuthenticated, (req, res) => {
         res.status(500).send("Internal server error");
     }
 });
+
+const PORT = process.env.PORT || 8080;
 
 ViteExpress.listen(app, PORT, () => {
     console.log(`Server listening on port ${PORT}`);
