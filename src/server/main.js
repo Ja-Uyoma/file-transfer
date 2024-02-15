@@ -45,12 +45,6 @@ const User = sequelize.define("User", {
 
 await User.sync();
 
-const uploadsDir = path.join(root, "/uploads");
-
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
 passport.use(new LocalStrategy({ usernameField: "email" },  async (email, password, done) => {
     try {
         const user = await User.findOne({ where: { email: email } });
@@ -149,6 +143,12 @@ app.post("/sign-up", async (request, response, next) => {
         return next(err);
     }
 });
+
+const uploadsDir = path.join(root, "/uploads");
+
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
 app.post("/upload", ensureUserIsAuthenticated, (request, response) => {
     if (!request.files || Object.keys(request.files).length === 0) {
