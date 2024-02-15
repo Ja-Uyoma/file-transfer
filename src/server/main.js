@@ -45,7 +45,6 @@ const User = sequelize.define("User", {
 
 await User.sync();
 
-const app = express();
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
 const uploadsDir = path.join(root, "/uploads");
 
@@ -87,6 +86,8 @@ passport.deserializeUser(async (id, done) => {
         done(err);
     }
 });
+
+const app = express();
 
 app.use(cors());
 app.use(logger("dev"));
