@@ -99,6 +99,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
+function ensureUserIsAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    else {
+        res.redirect("/");
+    }
+}
+
 app.get("/", (request, response) => {
     response.sendFile(path.join(root, "index.html"));
 });
@@ -108,7 +117,7 @@ app.post("/login", passport.authenticate("local", {
     failureRedirect: "/"
 }));
 
-app.get("/dropzone", (req, res) => {
+app.get("/dropzone", ensureUserIsAuthenticated, (req, res) => {
     res.sendFile(path.join(root, "/src/client/dropzone.html"));
 })
 
@@ -140,7 +149,7 @@ app.post("/sign-up", async (request, response, next) => {
     }
 });
 
-app.post("/upload", (request, response) => {
+app.post("/upload", ensureUserIsAuthenticated, (request, response) => {
     if (!request.files || Object.keys(request.files).length === 0) {
         return response.status(400).send("No files were uploaded");
     }
@@ -155,7 +164,7 @@ app.post("/upload", (request, response) => {
     });
 });
 
-app.delete("/delete-file", (req, res) => {
+app.delete("/delete-file", ensureUserIsAuthenticated, (req, res) => {
     const filename = req.body.filename;
 
     if (!filename) {
@@ -175,7 +184,7 @@ app.delete("/delete-file", (req, res) => {
     });
 });
 
-app.get("/get-existing-files", (req, res) => {
+app.get("/get-existing-files", ensureUserIsAuthenticated, (req, res) => {
     try {
         const files = fs.readdirSync(uploadsDir);
         const existingFiles = files.map(file => ({
