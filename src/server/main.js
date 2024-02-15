@@ -154,8 +154,14 @@ app.post("/upload", ensureUserIsAuthenticated, (request, response) => {
         return response.status(400).send("No files were uploaded");
     }
 
+    const userFolder = path.join(uploadsDir, request.user.id.toString());
+
+    if (!fs.existsSync(userFolder)) {
+        fs.mkdirSync(userFolder, { recursive: true });
+    }
+
     const uploadedFile = request.files.file;
-    uploadedFile.mv(path.join(uploadsDir, uploadedFile.name), (err) => {
+    uploadedFile.mv(path.join(userFolder, uploadedFile.name), (err) => {
         if (err) {
             return response.status(500).send(err);
         }
@@ -171,8 +177,10 @@ app.delete("/delete-file", ensureUserIsAuthenticated, (req, res) => {
         return res.status(400).send("Filename not provided");
     }
 
+    const userFolder = path.join(uploadsDir, req.user.id.toString());
+
     // Delete the file from the server
-    fs.unlink(path.join(uploadsDir, "/", filename), (err) => {
+    fs.unlink(path.join(userFolder, "/", filename), (err) => {
         if (err) {
             console.error("Error deleting file: ", err);
             res.status(500).send("Error deleting file");
@@ -185,11 +193,13 @@ app.delete("/delete-file", ensureUserIsAuthenticated, (req, res) => {
 });
 
 app.get("/get-existing-files", ensureUserIsAuthenticated, (req, res) => {
+    const userFolder = path.join(uploadsDir, req.user.id.toString());
+
     try {
-        const files = fs.readdirSync(uploadsDir);
+        const files = fs.readdirSync(userFolder);
         const existingFiles = files.map(file => ({
             name: file,
-            size: fs.statSync(path.join(uploadsDir, file)).size,
+            size: fs.statSync(path.join(userFolder, file)).size,
             url: `/uploads/${file}`,
             type: path.extname(file)
         }));
