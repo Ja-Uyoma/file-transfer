@@ -45,15 +45,6 @@ const User = sequelize.define("User", {
 
 await User.sync();
 
-const app = express();
-const PORT = process.env.PORT || 8080;
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
-const uploadsDir = path.join(root, "/uploads");
-
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
 passport.use(new LocalStrategy({ usernameField: "email" },  async (email, password, done) => {
     try {
         const user = await User.findOne({ where: { email: email } });
@@ -89,6 +80,9 @@ passport.deserializeUser(async (id, done) => {
     }
 });
 
+const app = express();
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
+
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.static(path.join(root, "dist")));
@@ -99,6 +93,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
+function ensureUserIsAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    else {
+        res.redirect("/");
+    }
+}
+
 app.get("/", (request, response) => {
     response.sendFile(path.join(root, "index.html"));
 });
@@ -108,7 +111,7 @@ app.post("/login", passport.authenticate("local", {
     failureRedirect: "/"
 }));
 
-app.get("/dropzone", (req, res) => {
+app.get("/dropzone", ensureUserIsAuthenticated, (req, res) => {
     res.sendFile(path.join(root, "/src/client/dropzone.html"));
 })
 
@@ -140,13 +143,25 @@ app.post("/sign-up", async (request, response, next) => {
     }
 });
 
-app.post("/upload", (request, response) => {
+const uploadsDir = path.join(root, "/uploads");
+
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+app.post("/upload", ensureUserIsAuthenticated, (request, response) => {
     if (!request.files || Object.keys(request.files).length === 0) {
         return response.status(400).send("No files were uploaded");
     }
 
+    const userFolder = path.join(uploadsDir, request.user.id.toString());
+
+    if (!fs.existsSync(userFolder)) {
+        fs.mkdirSync(userFolder, { recursive: true });
+    }
+
     const uploadedFile = request.files.file;
-    uploadedFile.mv(path.join(uploadsDir, uploadedFile.name), (err) => {
+    uploadedFile.mv(path.join(userFolder, uploadedFile.name), (err) => {
         if (err) {
             return response.status(500).send(err);
         }
@@ -155,15 +170,17 @@ app.post("/upload", (request, response) => {
     });
 });
 
-app.delete("/delete-file", (req, res) => {
+app.delete("/delete-file", ensureUserIsAuthenticated, (req, res) => {
     const filename = req.body.filename;
 
     if (!filename) {
         return res.status(400).send("Filename not provided");
     }
 
+    const userFolder = path.join(uploadsDir, req.user.id.toString());
+
     // Delete the file from the server
-    fs.unlink(path.join(uploadsDir, "/", filename), (err) => {
+    fs.unlink(path.join(userFolder, "/", filename), (err) => {
         if (err) {
             console.error("Error deleting file: ", err);
             res.status(500).send("Error deleting file");
@@ -175,12 +192,14 @@ app.delete("/delete-file", (req, res) => {
     });
 });
 
-app.get("/get-existing-files", (req, res) => {
+app.get("/get-existing-files", ensureUserIsAuthenticated, (req, res) => {
+    const userFolder = path.join(uploadsDir, req.user.id.toString());
+
     try {
-        const files = fs.readdirSync(uploadsDir);
+        const files = fs.readdirSync(userFolder);
         const existingFiles = files.map(file => ({
             name: file,
-            size: fs.statSync(path.join(uploadsDir, file)).size,
+            size: fs.statSync(path.join(userFolder, file)).size,
             url: `/uploads/${file}`,
             type: path.extname(file)
         }));
@@ -192,6 +211,8 @@ app.get("/get-existing-files", (req, res) => {
         res.status(500).send("Internal server error");
     }
 });
+
+const PORT = process.env.PORT || 8080;
 
 ViteExpress.listen(app, PORT, () => {
     console.log(`Server listening on port ${PORT}`);
