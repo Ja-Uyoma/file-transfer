@@ -45,7 +45,6 @@ const User = sequelize.define("User", {
 
 await User.sync();
 
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
 const uploadsDir = path.join(root, "/uploads");
 
 if (!fs.existsSync(uploadsDir)) {
@@ -107,6 +106,8 @@ function ensureUserIsAuthenticated(req, res, next) {
         res.redirect("/");
     }
 }
+
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
 
 app.get("/", (request, response) => {
     response.sendFile(path.join(root, "index.html"));
