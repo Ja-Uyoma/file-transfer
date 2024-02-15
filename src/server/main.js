@@ -81,6 +81,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 const app = express();
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
 
 app.use(cors());
 app.use(logger("dev"));
@@ -100,8 +101,6 @@ function ensureUserIsAuthenticated(req, res, next) {
         res.redirect("/");
     }
 }
-
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../");
 
 app.get("/", (request, response) => {
     response.sendFile(path.join(root, "index.html"));
